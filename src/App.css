@@ -1,32 +1,284 @@
-.App {
-  text-align: center;
+/*-------------UNIVERSAL-----------------------------------*/
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand', sans-serif;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+body {
+  background-color: gray;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+h1 {
+  margin: 0;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+#footer {
+  background-color: gray;
+}
+
+#menuLinks {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  background-color: gray;
+}
+
+/*----------------------BUTTONS----------------------------------------*/
+
+.bttn {
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  outline: none;
+  transition: background-color 200ms, color 200ms;
+}
+
+.bttn-lg {
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14pt;
+  outline: none;
+  transition: background-color 200ms, color 200ms;
+}
+
+.bttn:active {
+  background-color: rgb(200, 200, 200);
+  color: rgb(59, 59, 59);
+}
+
+.bttn-red {
+  color: rgb(255, 232, 198);
+  background-color: rgb(143, 23, 23);
+  border-top: 2px solid rgb(223, 59, 59);
+  border-left: 2px solid rgb(223, 59, 59);
+  border-bottom: 2px solid rgb(87, 13, 13);
+  border-right: 2px solid rgb(87, 13, 13);
+  transition: border-top 200ms, border-bottom 200ms, border-right 200ms, border-left 200ms;
+}
+
+.bttn-red:hover {
+  color: rgb(255, 232, 198);
+}
+
+.bttn-green:hover {
+  color: rgb(255, 232, 198);
+}
+
+.bttn-red:active {
+  background-color: rgb(129, 22, 22);
+  border-bottom: 2px solid rgb(223, 59, 59);
+  border-right: 2px solid rgb(223, 59, 59);
+  border-top: 2px solid rgb(87, 13, 13);
+  border-left: 2px solid rgb(87, 13, 13);
+  color: rgb(212, 194, 167);
+}
+
+.bttn-green {
+  color: rgb(255, 232, 198);
+  background-color: rgb(17, 78, 30);
+  border-top: 2px solid rgb(59, 177, 85);
+  border-left: 2px solid rgb(59, 177, 85);
+  border-bottom: 2px solid rgb(5, 47, 14);
+  border-right: 2px solid rgb(5, 47, 14);
+  transition: border-top 200ms, border-bottom 200ms, border-right 200ms, border-left 200ms;
+}
+
+.bttn-green:active {
+  background-color: rgb(15, 66, 26);
+  border-bottom: 2px solid rgb(59, 177, 85);
+  border-right: 2px solid rgb(59, 177, 85);
+  border-top: 2px solid rgb(5, 47, 14);
+  border-left: 2px solid rgb(5, 47, 14);
+  color: rgb(212, 194, 167);
+}
+
+/*----------------------LINKS----------------------------------------*/
+
+a.links {
+  color: rgb(255, 241, 215);
+  margin: 5px 20px;
+  letter-spacing: 3px;
+  transition: color 150ms;
+}
+
+a.links:hover {
+  color: rgb(33, 112, 59);
+  text-decoration: none;
+  margin: 5px 20px;
+}
+
+a.heading {
   color: white;
+  font-size: 18pt;
+  letter-spacing: 5px;
+  border: 5px solid transparent;
+  border-radius: 6px;
+  padding: 10px;
+  transition: padding 700ms, letter-spacing 700ms, font-size 700ms, color 700ms, font-weight 700ms, border 700ms;
 }
 
-.App-link {
-  color: #61dafb;
+a.heading:hover {
+  text-decoration: none;
+  border: 5px solid rgb(255, 255, 255);
+  border-radius: 6px;
+  color: rgb(185, 45, 45);
+  font-weight: bold;
+  letter-spacing: 35px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/*-------------------TEXT---------------------------*/
+
+.snowTxt {
+  font-family: 'Freckle Face', cursive;
+  letter-spacing: 5px;
+  font-size: 20pt;
+}
+
+.ltGrn-txt {
+  color: rgb(49, 153, 72);
+}
+
+.ltGry-txt {
+  color: rgb(192, 192, 192);
+}
+
+.footerTxt {
+  padding: 40px 10px;
+  color: white;
+  font-size: 14pt;
+  cursor: default;
+}
+
+.headingTxt {
+  color: rgb(248, 191, 35);
+  letter-spacing: 16px;
+  text-align: center;
+  font-family: 'Great Vibes', cursive;
+  font-size: 40pt;
+  cursor: default;
+}
+
+.spaced {
+  letter-spacing: 10px;
+  padding: 5px;
+  transition: color 200ms;
+}
+
+.spaced:hover {
+  color: inherit;
+}
+
+/*---------------------MARGINS -------------------------------*/
+
+.mar-5 {
+  margin: 5px;
+}
+
+.marL-5 {
+  margin-left: 5px;
+}
+
+.marB-5 {
+  margin-bottom: 5px;
+}
+
+.marT-5 {
+  margin-top: 5px;
+}
+
+.marR-5 {
+  margin-right: 5px;
+}
+
+.mar-10 {
+  margin: 10px;
+}
+
+.marL-10 {
+  margin-left: 10px;
+}
+
+.marB-10 {
+  margin-bottom: 10px;
+}
+
+.marT-10 {
+  margin-top: 10px;
+}
+
+.marR-10 {
+  margin-right: 10px;
+}
+
+/*----------------------FORMS------------------------------------*/
+
+.forms {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.forms input {
+  margin: 10px 5px;
+  padding: 5px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  transition: text-align 400ms;
+}
+
+.forms button {
+  margin: 10px;
+  outline: none;
+}
+
+.formWrap-dark {
+  padding: 80px 80px;
+  background-color: rgb(32, 32, 32);
+  border-radius: 6px;
+  margin: auto;
+  opacity: .87;
+  box-shadow: 2px 2px 8px black;
+}
+
+/*---------------------------------VALIDATIONS------------------------*/
+
+input.inValid {
+  box-shadow: 0px 0px 20px rgb(246, 28, 28);
+  border: 2px solid rgb(167, 15, 15);
+  background-color: rgb(255, 203, 203);
+}
+
+.inValidText {
+  color: red;
+  margin-left: 5px;
+}
+
+@media only screen and (max-width: 480px) {
+  .formWrap-dark {
+    padding: 40px 40px;
+    background-color: rgb(32, 32, 32);
+    border-radius: 6px;
+    margin: auto;
+    opacity: .87;
   }
-  to {
-    transform: rotate(360deg);
+  a.heading:hover {
+    text-decoration: none;
+    border: 5px solid rgb(255, 255, 255);
+    border-radius: 6px;
+    color: rgb(185, 45, 45);
+    font-weight: bold;
+    letter-spacing: 15px;
   }
 }
