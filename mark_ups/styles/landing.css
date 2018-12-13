@@ -1,0 +1,14 @@
+.wrap {
+    background: url('../Img/landing.jpg')no-repeat;
+    background-position: center;
+    height: 100vh;
+    margin-top: -24px;
+    margin-bottom: -50px;
+    display: flex;
+    flex-direction: column;
+}
+
+#land-btns {
+    margin: auto;
+    width: fit-content;
+}

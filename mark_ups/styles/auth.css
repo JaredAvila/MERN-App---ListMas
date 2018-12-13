@@ -1,0 +1,16 @@
+.wrap {
+    background: url('../Img/authBkgd.jpeg')no-repeat;
+    background-position: center;
+    height: 100vh;
+    margin-top: -24px;
+    margin-bottom: -50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formWrap-dark {
+    width: fit-content;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
