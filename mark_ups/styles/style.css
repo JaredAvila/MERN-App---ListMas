@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: gray;
+    background-color: rgb(172, 172, 172);
 }
 
 h1 {
@@ -31,6 +31,71 @@ a:hover {
     display: flex;
     flex-direction: column;
     background-color: gray;
+}
+
+/*------------------OUTLINE------------------------------------------*/
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+}
+
+.horRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.horRow-rev {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: space-evenly;
+}
+
+.cards {
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 10px 0;
+    margin: 5px;
+    text-align: center;
+}
+
+.cards ul li {
+    display: block;
+    text-align: left;
+    padding-left: 5px;
+}
+
+.cards-2 {
+    width: 200px;
+}
+
+.cards-3 {
+    width: 300px;
+}
+
+.cards-4 {
+    width: 400px;
+}
+
+.cards-5 {
+    width: 500px;
+}
+
+.cards-6 {
+    width: 600px;
+}
+
+.cards h1 {
+    margin-bottom: 30px;
+    text-align: center;
+    padding: 5px;
+}
+
+.cards p, .cards button {
+    margin: 10px;
+    text-align: left;
 }
 
 /*----------------------BUTTONS----------------------------------------*/

@@ -9,13 +9,13 @@ const passport = require("passport");
 const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 
-// GET      /listItems/test
+// GET      /test
 // Desc     tests listItems route
 // Access   Public
 
 router.get("/test", (req, res) => res.json({ message: "users works" }));
 
-// POST      /listItems/register
+// POST      /register
 // Desc     Register user
 // Access   Public
 
@@ -51,7 +51,7 @@ router.post("/register", (req, res) => {
   });
 });
 
-// GET       /listItems/login
+// GET       /login
 // Desc       Login user/ return JWT token
 // Access     Public
 
@@ -80,7 +80,7 @@ router.post("/login", (req, res) => {
           keys.secretOrKey,
           { expiresIn: 11700 },
           (err, token) => {
-            res.jsonp({ success: true, token: "Bearer " + token });
+            res.json({ success: true, token: "Bearer " + token });
           }
         );
       } else {
@@ -92,7 +92,7 @@ router.post("/login", (req, res) => {
   });
 });
 
-// GET      /users/current
+// GET      /current
 // Desc     Return current user/Testing protected routes
 // Access   Private
 

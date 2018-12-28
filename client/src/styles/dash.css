@@ -1,0 +1,110 @@
+#dashboard {
+    background: url('../img/dash.jpeg');
+    background-size: cover;
+    width: 80%;
+    height: 100vh;
+    margin: auto;
+    box-shadow: 3px 3px 10px black;
+}
+
+#userProf {
+    background-color: rgb(207, 207, 207);
+    width: 80%;
+    opacity: .97;
+    margin: auto;
+}
+
+#theList {
+    height: 500px;
+    overflow: hidden;
+    overflow-y: scroll;
+    background: url('../img/list.png');
+    background-size: cover;
+    background-attachment: local;
+    padding: 20px;
+    color: white;
+    box-shadow: 0px 2px 18px black;
+}
+
+.listCard {
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 6px;
+}
+
+#theList ol {
+    color: black;
+    font-weight: bold;
+    font-size: 16pt;
+    margin-left: 15px;
+}
+
+#theList ol li a {
+    font-family: 'Great Vibes', cursive;
+    letter-spacing: 2px;
+    color: black;
+    font-size: 20pt;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 5px;
+    padding: 5px;
+}
+
+#profWrap {
+    background: url('../img/profile\ \(2\).jpeg');
+    background-size: cover;
+}
+
+#cardBack {
+    background-color: white;
+    opacity: .9;
+}
+
+.profileHeading {
+    text-shadow: 0px 0px 2px black;
+    color: rgb(248, 191, 35);
+    text-align: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 40pt;
+    cursor: default;
+}
+
+.userName {
+    border-bottom: 4px double black;
+    text-align: center;
+}
+
+#listForm {
+    color: white;
+}
+
+h6 {
+    border-bottom: 2px solid black;
+    width: 100%;
+}
+
+#profileForm input {
+    border-bottom: 1px solid black;
+    border-radius: 0;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    /* make scrollbar transparent */
+}
+
+@media only screen and (max-width: 480px) {
+    h1 {
+        font-size: 20pt;
+    }
+    .profileHeading {
+        font-size: 20pt;
+    }
+    #dashboard {
+        width: 100%;
+    }
+    #userProf {
+        width: 100%;
+    }
+}

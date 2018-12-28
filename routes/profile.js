@@ -115,29 +115,33 @@ router.post(
     if (req.body.imgUrl) profileFields.imgUrl = req.body.imgUrl;
     if (req.body.bio) profileFields.bio = req.body.bio;
 
-    Profile.findOne({ user: req.user.id }).then(profile => {
-      if (profile) {
-        // Update
-        Profile.findOneAndUpdate(
-          { user: req.user.id },
-          { $set: profileFields },
-          { new: true }
-        ).then(profile => res.json(profile));
-      } else {
-        // Create
+    Profile.findOne({ user: req.user.id })
+      .populate("user", "name")
+      .then(profile => {
+        if (profile) {
+          // Update
+          Profile.findOneAndUpdate(
+            { user: req.user.id },
+            { $set: profileFields },
+            { new: true }
+          ).then(profile => res.json(profile));
+        } else {
+          // Create
 
-        // Check if handle exists
-        Profile.findOne({ handle: profileFields.handle }).then(profile => {
-          if (profile) {
-            errors.handle = "That handle already exists";
-            res.status(400).json(errors);
-          }
+          // Check if handle exists
+          Profile.findOne({ handle: profileFields.handle }).then(profile => {
+            if (profile) {
+              errors.handle = "That handle already exists";
+              res.status(400).json(errors);
+            }
 
-          // Save Profile
-          new Profile(profileFields).save().then(profile => res.json(profile));
-        });
-      }
-    });
+            // Save Profile
+            new Profile(profileFields)
+              .save()
+              .then(profile => res.json(profile));
+          });
+        }
+      });
   }
 );
 
@@ -152,6 +156,7 @@ router.post(
     User.findById(req.params.friend_id)
       .then(friend => {
         Profile.findOne({ user: req.user.id })
+          .populate("user", "name")
           .then(profile => {
             // Add to exp array
             profile.friends.unshift({
@@ -174,13 +179,14 @@ router.post(
 );
 
 // Route   DELETE profile/friend/:friend_id
-// Desc    Delete experience from profile
+// Desc    Delete friend
 // Access  Private
 router.delete(
   "/friend/:friend_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id })
+      .populate("user", "name")
       .then(profile => {
         // Get remove index
         const removeIndex = profile.friends
@@ -213,6 +219,7 @@ router.post(
     }
 
     Profile.findOne({ user: req.user.id })
+      .populate("user", "name")
       .then(profile => {
         const newItem = {
           title: req.body.title,
@@ -223,18 +230,19 @@ router.post(
         //Save
         profile.save().then(profile => res.json(profile));
       })
-      .catch(err => console.log(err));
+      .catch(err => res.json(err));
   }
 );
 
-// Route   POST profile/listItem/check/:profile_id/:item_id
+// Route   POST profile/listItem/check/:profile_id/:item_id/:friend_id
 // Desc    Check an item on the list
 // Access  Private
 router.post(
-  "/listItem/check/:profile_id/:item_id",
+  "/listItem/check/:profile_id/:item_id/:friend_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ _id: req.params.profile_id })
+      .populate("user", "name")
       .then(profile => {
         // Get remove index
         const removeIndex = profile.userWishList
@@ -242,12 +250,12 @@ router.post(
           .indexOf(req.params.item_id);
 
         //is item checked?
-        if (!profile.userWishList[removeIndex].checked) {
+        if (!profile.userWishList[removeIndex].item.checked) {
           //Set information to new list item
           const newItem = {
             title: profile.userWishList[removeIndex].title,
             importance: profile.userWishList[removeIndex].importance,
-            checked: true
+            item: { checked: true, friendId: req.params.friend_id }
           };
 
           // Splice out of array
@@ -263,37 +271,45 @@ router.post(
       .catch(err => console.log(err));
   }
 );
-// Route   POST profile/listItem/unCheck/:profile_id/:item_id
+// Route   POST profile/listItem/unCheck/:profile_id/:item_id/:friend_id
 // Desc    unCheck an item on the list
 // Access  Private
 router.post(
-  "/listItem/unCheck/:profile_id/:item_id",
+  "/listItem/unCheck/:profile_id/:item_id/:friend_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ _id: req.params.profile_id })
+      .populate("user", "name")
       .then(profile => {
         // Get remove index
         const removeIndex = profile.userWishList
           .map(item => item.id)
           .indexOf(req.params.item_id);
+        //does the check belong to the checker?
+        if (
+          profile.userWishList[removeIndex].item.friendId ===
+          req.params.friend_id
+        ) {
+          //is item checked?
+          if (profile.userWishList[removeIndex].item.checked) {
+            //Set information to new list item
+            const newItem = {
+              title: profile.userWishList[removeIndex].title,
+              importance: profile.userWishList[removeIndex].importance,
+              item: { checked: false, friendId: req.params.friend_id }
+            };
 
-        //is item checked?
-        if (profile.userWishList[removeIndex].checked) {
-          //Set information to new list item
-          const newItem = {
-            title: profile.userWishList[removeIndex].title,
-            importance: profile.userWishList[removeIndex].importance,
-            checked: false
-          };
+            // Splice out of array
+            profile.userWishList.splice(removeIndex, 1);
 
-          // Splice out of array
-          profile.userWishList.splice(removeIndex, 1);
+            //Add new item to list
+            profile.userWishList.splice(removeIndex, 0, newItem);
 
-          //Add new item to list
-          profile.userWishList.splice(removeIndex, 0, newItem);
-
-          //Save
-          profile.save().then(profile => res.json(profile));
+            //Save
+            profile.save().then(profile => res.json(profile));
+          }
+        } else {
+          res.json(profile);
         }
       })
       .catch(err => console.log(err));
@@ -301,7 +317,7 @@ router.post(
 );
 
 // Route   DELETE profile/listItem/:item_id
-// Desc    Delete education from profile
+// Desc    Delete item from profile
 // Access  Private
 router.delete(
   "/listItem/:item_id",
@@ -382,6 +398,19 @@ router.delete(
         res.json({ success: true })
       );
     });
+  }
+);
+
+// Route   DELETE profile/:prof_id
+// Desc    Delete profile
+// Access  Private
+router.delete(
+  "/:prof_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOneAndRemove({ user: req.user.id }).then(() =>
+      res.json({ success: true })
+    );
   }
 );
 

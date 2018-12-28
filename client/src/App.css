@@ -4,10 +4,17 @@
   margin: 0;
   padding: 0;
   font-family: 'Quicksand', sans-serif;
+  cursor: default;
 }
 
 body {
-  background-color: gray;
+  background-color: rgb(172, 172, 172);
+}
+
+#spinner {
+  background: rgb(184, 184, 184);
+  height: 100vh;
+  display: flex;
 }
 
 h1 {
@@ -31,6 +38,85 @@ a:hover {
   display: flex;
   flex-direction: column;
   background-color: gray;
+}
+
+/*------------------OUTLINE------------------------------------------*/
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+
+.horRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.horRowLeft {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.horRow-rev {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: space-evenly;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 10px 0;
+  margin: 5px;
+}
+
+.cards ul li {
+  display: block;
+  text-align: left;
+  padding-left: 5px;
+}
+
+.cards-2 {
+  width: 200px;
+}
+
+.cards-3 {
+  width: 300px;
+}
+
+.cards-4 {
+  width: 400px;
+}
+
+.cards-5 {
+  width: 500px;
+}
+
+.cards-6 {
+  width: 600px;
+}
+
+.cards h1 {
+  margin-bottom: 30px;
+  text-align: center;
+  padding: 5px;
+}
+
+.cards p, .cards button {
+  margin: 10px;
+  text-align: left;
+}
+
+.wrapCenter {
+  justify-content: center;
+  align-items: center;
 }
 
 /*----------------------BUTTONS----------------------------------------*/
@@ -71,10 +157,6 @@ a:hover {
   color: rgb(255, 232, 198);
 }
 
-.bttn-green:hover {
-  color: rgb(255, 232, 198);
-}
-
 .bttn-red:active {
   background-color: rgb(129, 22, 22);
   border-bottom: 2px solid rgb(223, 59, 59);
@@ -103,16 +185,47 @@ a:hover {
   color: rgb(212, 194, 167);
 }
 
+.bttn-green:hover {
+  color: rgb(255, 232, 198);
+}
+
+.bttn-ltGray {
+  color: rgb(0, 0, 0);
+  background-color: rgb(212, 212, 212);
+  border-top: 2px solid rgb(251, 251, 251);
+  border-left: 2px solid rgb(251, 251, 251);
+  border-bottom: 2px solid rgb(167, 167, 167);
+  border-right: 2px solid rgb(167, 167, 167);
+  transition: border-top 200ms, border-bottom 200ms, border-right 200ms, border-left 200ms;
+}
+
+.bttn-ltGray:active {
+  background-color: rgb(184, 184, 184);
+  border-bottom: 2px solid rgb(251, 251, 251);
+  border-right: 2px solid rgb(251, 251, 251);
+  border-top: 2px solid rgb(167, 167, 167);
+  border-left: 2px solid rgb(167, 167, 167);
+}
+
+.bttn-ltGray:hover {
+  color: rgb(27, 27, 27);
+}
+
 /*----------------------LINKS----------------------------------------*/
 
-a.links {
+.point {
+  cursor: pointer;
+}
+
+a.links, .links {
   color: rgb(255, 241, 215);
   margin: 5px 20px;
   letter-spacing: 3px;
   transition: color 150ms;
+  cursor: pointer;
 }
 
-a.links:hover {
+a.links:hover, .links:hover {
   color: rgb(33, 112, 59);
   text-decoration: none;
   margin: 5px 20px;
@@ -139,6 +252,22 @@ a.heading:hover {
 
 /*-------------------TEXT---------------------------*/
 
+.lHand {
+  margin-right: auto;
+}
+
+.underline-dub {
+  border-bottom: 4px double black;
+}
+
+.loud {
+  font-weight: bold;
+}
+
+.forms button.bttn-cen {
+  text-align: center;
+}
+
 .snowTxt {
   font-family: 'Freckle Face', cursive;
   letter-spacing: 5px;
@@ -149,14 +278,32 @@ a.heading:hover {
   color: rgb(49, 153, 72);
 }
 
+.ltRed-txt {
+  color: rgb(184, 60, 60);
+}
+
 .ltGry-txt {
   color: rgb(192, 192, 192);
+}
+
+.drkGry-txt {
+  color: rgb(87, 87, 87);
 }
 
 .footerTxt {
   padding: 40px 10px;
   color: white;
   font-size: 14pt;
+  cursor: default;
+}
+
+.goldenGoddess {
+  color: rgb(248, 191, 35);
+  letter-spacing: 10px;
+  text-align: center;
+  font-family: 'Great Vibes', cursive;
+  font-size: 28pt;
+  text-shadow: 0px 0px 2px black;
   cursor: default;
 }
 
@@ -229,13 +376,12 @@ a.heading:hover {
   margin: auto;
 }
 
-.forms input {
+.forms input, .forms select {
   margin: 10px 5px;
   padding: 5px;
   border-radius: 6px;
   border: none;
   outline: none;
-  transition: text-align 400ms;
 }
 
 .forms button {
@@ -252,17 +398,17 @@ a.heading:hover {
   box-shadow: 2px 2px 8px black;
 }
 
-/*---------------------------------VALIDATIONS------------------------*/
+/*--------------------VALIDATIONS--------------------------------------*/
 
-input.inValid {
-  box-shadow: 0px 0px 20px rgb(246, 28, 28);
-  border: 2px solid rgb(167, 15, 15);
-  background-color: rgb(255, 203, 203);
+.inValid {
+  box-shadow: 0px 0px 10px rgb(248, 54, 54);
+  border: 2px solid rgb(248, 52, 52);
+  background-color: rgb(255, 235, 235);
 }
 
 .inValidText {
   color: red;
-  margin-left: 5px;
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 480px) {
