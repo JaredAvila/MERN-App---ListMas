@@ -54,7 +54,7 @@ class Navbar extends Component {
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
         <div className="container">
           <div id="menuLinks">
-            <Link className="heading point" to="/">
+            <Link className="heading point" to="/landing">
               <span className="ltGrn-txt point">List</span>mas
             </Link>
           </div>
